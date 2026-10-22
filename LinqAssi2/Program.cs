@@ -168,7 +168,65 @@ namespace LinqAssi2
 
             #endregion
 
-            
+            #region From 16 to 21
+
+            // Q16
+            Console.WriteLine("16. Get the first product whose price is greater than $50");
+            Console.WriteLine();
+            var q16 = ProductList.First(p => p.UnitPrice > 50);
+            Console.WriteLine(q16);
+            Console.WriteLine();
+
+            // Q17
+            Console.WriteLine("17. Try to get the first product with a price > $500, it returns null instead of throwing");
+            Console.WriteLine();
+            var q17 = ProductList.FirstOrDefault(p => p.UnitPrice > 500);
+            Console.WriteLine(q17 == null ? "null" : q17.ToString());
+            Console.WriteLine();
+
+            // Q18
+            Console.WriteLine("18. Generate a multiplication table row for 7");
+            Console.WriteLine();
+            var q18 = Enumerable.Range(1, 10).Select(i => 7 * i);
+            foreach (var n in q18)
+            {
+                Console.WriteLine(n);
+            }
+            Console.WriteLine();
+
+            // Q19
+            Console.WriteLine("19. Generate even numbers between 1 and 30");
+            Console.WriteLine();
+            var q19 = Enumerable.Range(1, 30).Where(n => n % 2 == 0);
+            foreach (var n in q19)
+            {
+                Console.WriteLine(n);
+            }
+            Console.WriteLine();
+
+            // Q20
+            Console.WriteLine("20. Concatenate the first 3 product names with the first 3 customer company names into a single sequence");
+            Console.WriteLine();
+            var q20 = ProductList.Take(3)
+                .Select(p => p.ProductName)
+                .Concat(CustomerList.Take(3).Select(c => c.CustomerName));
+            foreach (var s in q20)
+            {
+                Console.WriteLine(s);
+            }
+            Console.WriteLine();
+
+            // Q21
+            Console.WriteLine("21. Pair each product with a customer (by position) and produce a string \"ProductName sold to CompanyName\"");
+            Console.WriteLine();
+            var q21 = ProductList.Zip(CustomerList, (p, c) => p.ProductName + " sold to " + c.CustomerName);
+            foreach (var s in q21)
+            {
+                Console.WriteLine(s);
+            }
+            Console.WriteLine();
+
+            #endregion
         }
     }
 }
